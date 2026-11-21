@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>መልካም ልደት! ✨💖</title>
+    <!-- Google Fonts for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600&family=Noto+Sans+Ethiopic:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-size/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-pink: #ff7597;
+            --rose-gold: #b76e79;
+            --soft-purple: #4a154b;
+            --bg-gradient: linear-gradient(135deg, #ffeef2 0%, #ffd1dc 50%, #f3e5f5 100%);
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --shadow: 0 8px 32px 0 rgba(244, 67, 54, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans Ethiopic', 'Fira Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-bottom: 90px; /* Space for music player bar */
+        }
+
+        /* Sparkles & Confetti Container */
+        #confetti-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ff4081;
+            opacity: 0.7;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Floating Hearts Animation */
+        @keyframes float-heart {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.3); opacity: 0; }
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: var(--primary-pink);
+            animation: float-heart 2.5s ease-out forwards;
+            pointer-events: none;
+        }
+
+        /* Card styles & Page Layout */
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 30px 15px;
+            background: var(--glass-bg);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .id-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(183, 110, 121, 0.15);
+            color: var(--rose-gold);
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(183, 110, 121, 0.3);
+        }
+
+        .balloon-graphic {
+            font-size: 45px;
+            margin-bottom: 10px;
+            display: inline-block;
+            animation: sway 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes sway {
+            0% { transform: rotate(-5deg) translateY(0); }
+            100% { transform: rotate(5deg) translateY(-8px); }
+        }
+
+        .header h1 {
+            color: var(--soft-purple);
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .header p {
+            color: #6a1b29;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+      /* The Envelope / Greeting section */
+        .letter-card {
+            background: white;
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255,255,255,0.8);
+            position: relative;
+        }
+
+        .letter-card h2 {
+            font-size: 18px;
+            color: var(--rose-gold);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .letter-text {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #4a4a4a;
+            white-space: pre-wrap;
+        }
+
+        /* Swipeable Gallery Section */
+        .gallery-section {
+            background: var(--glass-bg);
+            border-radius: 24px;
+            padding: 20px 15px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .gallery-section h2 {
+            color: var(--soft-purple);
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 10px;
+            scrollbar-width: none; /* Hide for Firefox */
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            display: none; /* Hide for Chrome/Safari */
+        }
+
+        .carousel-item {
+            flex: 0 0 85%;
+            scroll-snap-align: center;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border: 4px solid white;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            padding: 10px;
+            font-size: 13px;
+            text-align: center;
+            color: #555;
+            background: #fff9fa;
+        }
+
+        /* Video Section */
+        .video-section {
+            background: var(--glass-bg);
+            border-radius: 24px;
+            padding: 20px 15px;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .video-section h2 {
+            color: var(--soft-purple);
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: #000;
+        }
+
+        .video-wrapper iframe, .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-caption {
+            text-align: center;
+            font-size: 13px;
+            margin-top: 10px;
+            color: #666;
+        }
+
+        /* Music Player Overlay in Bottom */
+        .music-bar {
+            position: fixed;
+            bottom: 15px;
+            left: 5%;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 10px 30px rgba(183, 110, 121, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            border: 1.5px solid var(--primary-pink);
+        }
+
+        .music-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .music-icon {
+            font-size: 20px;
+            color: var(--primary-pink);
+            animation: spin 3s linear infinite;
+        }
